@@ -82,3 +82,172 @@
   .live-culture-grid article { min-height: 0; }
   .live-culture-grid p { min-height: 0; }
 }
+
+/* AI 文化助手专题页 */
+.ai-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 310px;
+  gap: 26px;
+  padding: 58px 10vw 85px;
+  background: #f3ecdf;
+}
+
+.ai-chat-panel,
+.recommend-card {
+  background: #fbf8f0;
+  border: 1px solid #dfd3c0;
+  box-shadow: 0 18px 45px rgba(33, 53, 47, 0.08);
+}
+
+.ai-chat-panel {
+  overflow: hidden;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background: #21453f;
+  color: #fff5e5;
+}
+
+.chat-title {
+  font: 600 18px "Noto Serif SC";
+}
+
+.online-badge {
+  padding: 4px 10px;
+  border: 1px solid #8db1a6;
+  border-radius: 999px;
+  color: #d7eadf;
+  font-size: 11px;
+}
+
+.error-banner {
+  padding: 10px 22px;
+  background: #f8dddd;
+  color: #9d3735;
+  font-size: 12px;
+}
+
+.chat-body {
+  min-height: 350px;
+  max-height: 480px;
+  overflow-y: auto;
+  padding: 26px;
+  background: linear-gradient(180deg, #f6f0e5, #fbf8f0);
+}
+
+.msg {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 17px;
+}
+
+.msg > b {
+  display: grid;
+  place-items: center;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #e2eadf;
+}
+
+.msg > div {
+  max-width: 76%;
+  padding: 13px 16px;
+  border-radius: 2px 14px 14px 14px;
+  background: #fff;
+  color: #43534e;
+  font: 14px/1.75 "Noto Serif SC";
+  box-shadow: 0 8px 18px rgba(32, 53, 47, 0.06);
+}
+
+.msg.user {
+  justify-content: flex-end;
+}
+
+.msg.user > div {
+  border-radius: 14px 2px 14px 14px;
+  background: #a63e39;
+  color: #fff;
+}
+
+.quick-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 18px 22px 12px;
+  border-top: 1px solid #e6dccd;
+}
+
+.quick-tags button {
+  padding: 7px 10px;
+  border: 1px solid #d7c9b6;
+  background: #f7f1e6;
+  color: #8f3b38;
+  font-size: 12px;
+}
+
+.chat-input-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  padding: 12px 22px 22px;
+}
+
+.chat-input-row input {
+  min-width: 0;
+  padding: 13px 15px;
+  border: 1px solid #d8cebf;
+  background: #fffdf8;
+  color: #243933;
+  outline-color: #a63e39;
+}
+
+.chat-input-row .send-btn {
+  padding: 0 23px;
+  background: #a63e39;
+  color: #fff;
+  font-weight: 700;
+}
+
+.chat-input-row .send-btn:disabled {
+  opacity: 0.6;
+}
+
+.ai-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.recommend-card {
+  padding: 24px;
+  border-top: 3px solid #c08c4d;
+}
+
+.recommend-card h3 {
+  margin: 0 0 12px;
+  font: 600 20px "Noto Serif SC";
+}
+
+.recommend-card p,
+.recommend-card li {
+  color: #66726c;
+  font: 13px/1.75 "Noto Serif SC";
+}
+
+.recommend-card ul {
+  margin: 12px 0 0;
+  padding-left: 20px;
+}
+
+@media (max-width: 820px) {
+  .ai-layout { grid-template-columns: 1fr; padding: 35px 6vw 65px; }
+  .chat-body { min-height: 310px; }
+  .msg > div { max-width: 86%; }
+}
