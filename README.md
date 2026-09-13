@@ -4,7 +4,7 @@
 
 ## 项目信息
 
-- 网站主题：AI 加中华传统文化数字体验
+- 网站主题：AI +中华传统文化数字体验
 - 学生姓名：李新阳
 - 学号：20250371060
 - 开发框架：Vue 3 和 Vite
@@ -63,7 +63,7 @@ DEEPSEEK_MODEL=deepseek-v4-flash
 
 ## 作业材料
 
-- AI 协作日志：`华夏智游AI协作日志_李新阳.docx`
+- AI 协作日志：`AI协作日志_李新阳.docx`
 - 页面截图：`docs/screenshots/`
 - Git 提交记录：使用 `git log --oneline` 查看
 
