@@ -1,0 +1,323 @@
+/* 切换阅读与知识回顾。 */
+.workshop-entry { display: inline-block; margin: 22px 0 0 18px; padding-bottom: 7px; color: #f6d6a1; border-bottom: 1px solid #dcb57890; text-decoration: none; font-size: 14px; }
+@media(max-width:650px) { .workshop-entry { margin-left: 0; margin-top: 18px; margin-right: 25px; } }
+.topic-page .topic-jump-links { display: flex; flex-wrap: wrap; align-items: center; gap: 28px; padding: 20px 10vw; background: #fffaf1; border-bottom: 1px solid #ddd2bc; }
+.topic-jump-links > span { font-size: 11px; color: #958161; letter-spacing: 2px; }
+.topic-page .topic-jump-links a { font-size: 13px; padding: 6px 0; color: #335748; text-decoration: none; border-bottom: 1px solid #bb9d6b; }
+#reading-lab, #knowledge-check { scroll-margin-top: 95px; }
+.reading-explorer { background: #eee8dc; border-block: 1px solid #ddd1bc; }
+.explorer-heading { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin: 15px 0 32px; }
+.explorer-heading h2 { font: 600 32px/1.5 "Noto Serif SC"; margin: 0; }
+.explorer-heading > p { max-width: 360px; font: 14px/1.9 "Noto Serif SC"; color: #627064; margin: 0; }
+.explorer-choices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+.explorer-choices button { padding: 17px 20px; border: 1px solid #d6c8ae; text-align: left; color: #4f6254; background: #f8f4eb; border-radius: 4px; font-size: 15px; }
+.explorer-choices small { color: #a08c69; font: 11px Georgia; margin-right: 18px; }
+.explorer-choices button[aria-pressed="true"] { color: #f7e9ca; background: #244d3f; border-color: #244d3f; }
+.explorer-choices button[aria-pressed="true"] small { color: #dfc391; }
+.explorer-panel { display: grid; grid-template-columns: .95fr 1.05fr; background: #fcf9f1; border: 1px solid #d8ccb6; border-radius: 5px; overflow: hidden; }
+.explorer-intro { padding: 36px; background: #e5dcc8; display: flex; flex-direction: column; align-items: start; }
+.explorer-intro > span { color: #9a4b38; font: 10px/1.6 sans-serif; letter-spacing: 2px; }
+.explorer-intro h3 { font: 600 26px/1.6 "Noto Serif SC"; margin: 20px 0 15px; }
+.explorer-intro p { margin: 0 0 25px; font: 14px/1.9 "Noto Serif SC"; color: #5b675b; }
+.explorer-intro a { color: #934336; text-decoration: none; margin-top: auto; font-size: 13px; border-bottom: 1px solid #b38b6b; padding-bottom: 8px; }
+.explorer-steps { list-style: none; margin: 0; padding: 15px 30px; }
+.explorer-steps li { display: flex; gap: 18px; padding: 22px 0; border-bottom: 1px solid #e3d9c6; }
+.explorer-steps li:last-child { border-bottom: 0; }
+.explorer-steps b { font: 17px Georgia; color: #aa8a56; padding-top: 4px; }
+.explorer-steps h4 { font: 600 18px "Noto Serif SC"; margin: 0 0 9px; }
+.explorer-steps p { margin: 0; font: 13px/1.9 "Noto Serif SC"; color: #627064; }
+.explorer-note { display: flex; gap: 18px; margin-top: 22px; color: #64705e; font-size: 13px; line-height: 1.9; }
+.explorer-note > b { flex-shrink: 0; color: #9d493a; }
+.knowledge-quiz { display: grid; grid-template-columns: .75fr 1.25fr; gap: 50px; background: #f8f4ea; }
+.quiz-intro h2 { font: 600 32px/1.5 "Noto Serif SC"; margin: 18px 0 12px; }
+.quiz-intro > p { color: #667162; font-size: 14px; line-height: 1.8; }
+.quiz-counter { display: inline-block; border: 1px solid #cab894; padding: 7px 14px; color: #957043; font: 14px Georgia; margin-top: 15px; }
+.knowledge-card { min-width: 0; padding: 30px; border: 1px solid #d8cbb2; border-top: 3px solid #b18a4e; background: #fffdf7; border-radius: 5px; }
+.knowledge-card h3 { margin: 0 0 24px; font: 600 21px/1.7 "Noto Serif SC"; }
+.knowledge-card > p { font: 14px/1.8 "Noto Serif SC"; color: #657162; }
+.knowledge-options { display: grid; gap: 10px; }
+.knowledge-options button { display: flex; gap: 12px; align-items: center; padding: 14px; border: 1px solid #ded4c2; border-radius: 3px; background: #f6f2e8; text-align: left; font-size: 14px; line-height: 1.7; }
+.knowledge-options button:disabled { cursor: default; }
+.knowledge-options small { color: #998361; font: 12px Georgia; }
+.knowledge-options span { margin-left: auto; }
+.knowledge-options .is-correct { color: #244e3e; border-color: #7b9c83; background: #e7efe2; }
+.knowledge-options .is-wrong { color: #984839; border-color: #c68a78; background: #f7e7de; }
+.knowledge-feedback { margin-top: 22px; padding-top: 20px; border-top: 1px solid #e0d4bc; }
+.knowledge-feedback > b { font-size: 14px; color: #385d44; }
+.knowledge-feedback p { font: 13px/1.9 "Noto Serif SC"; color: #667062; }
+.knowledge-feedback button, .quiz-complete-actions a, .quiz-complete-actions button { display: inline-block; padding: 10px 15px; color: #fff5dc; background: #2d5645; border-radius: 3px; font-size: 13px; text-decoration: none; }
+.knowledge-score { display: block; color: #9b4838; font: 52px Georgia; margin-bottom: 20px; }
+.knowledge-score small { font-size: 23px; color: #a7906e; }
+.quiz-complete-actions { display: flex; gap: 12px; margin-top: 25px; }
+.quiz-complete-actions button { background: #ebe2cf; color: #755d3a; }
+.detail-page .detail-hero-illustrated { background: radial-gradient(ellipse at 90% 80%, #9c845350, transparent 70%), #23483e; }
+.detail-page .detail-emblem { position: absolute; right: 12vw; top: 65px; color: #ead2a51c; font: 260px "Noto Serif SC"; border: 1px solid #ead2a522; padding: 10px 40px; border-radius: 50%; }
+.detail-sources { border-top: 1px solid #d8cbb5; padding-top: 25px; margin-top: 35px; }
+.detail-sources h2 { font: 600 20px "Noto Serif SC"; }
+.detail-sources p { font: 13px/1.8 "Noto Serif SC"; color: #697267; }
+.detail-sources a { display: block; font: 13px/1.8 "Noto Serif SC"; color: #984635; overflow-wrap: anywhere; }
+@media(max-width:760px) {
+  .topic-page .topic-jump-links { padding: 16px 7vw; gap: 20px; }
+  .topic-jump-links > span { font-size: 10px; }
+  .explorer-heading { display: block; margin-bottom: 25px; }
+  .explorer-heading h2, .quiz-intro h2 { font-size: 27px; }
+  .explorer-heading > p { margin-top: 15px; }
+  .explorer-choices { gap: 6px; }
+  .explorer-choices button { padding: 12px 7px; font-size: 12px; text-align: center; }
+  .explorer-choices small { display: block; margin: 0 0 7px; }
+  .explorer-panel { grid-template-columns: 1fr; }
+  .explorer-intro { padding: 25px; }
+  .explorer-intro h3 { font-size: 23px; }
+  .explorer-steps { padding: 5px 24px; }
+  .explorer-note { gap: 12px; }
+  .knowledge-quiz { grid-template-columns: 1fr; gap: 25px; }
+  .knowledge-card { padding: 23px; }
+  .knowledge-card h3 { font-size: 19px; }
+  .knowledge-options button { font-size: 13px; }
+  .detail-page .detail-emblem { right: -70px; font-size: 180px; }
+}
+/* 专题页共用的展签、边框和排版。 */
+.topic-page { --topic-accent: #9d4539; }
+.topic-page .topic-hero { min-height: 510px; padding-top: 85px; padding-bottom: 85px; isolation: isolate; }
+.topic-page .topic-hero::before { content: ''; position: absolute; inset: 18px; border: 1px solid #ead4a525; pointer-events: none; }
+.topic-page .topic-hero-copy { max-width: 66%; }
+.topic-page .topic-hero-copy > span { font-size: 11px; letter-spacing: 3px; }
+.topic-page .topic-hero h1 { font-size: clamp(36px, 4vw, 58px); line-height: 1.4; margin: 22px 0; }
+.topic-page .topic-hero p { max-width: 490px; font-size: 15px; color: #e0e8df; }
+.topic-page .topic-primary { margin-top: 30px; font-size: 14px; padding: 14px 22px; box-shadow: 0 8px 22px #08191430; }
+.topic-page .topic-section { padding-top: 72px; padding-bottom: 72px; }
+.topic-page .section-kicker, .topic-page .content-slot-eyebrow { display: flex; align-items: center; gap: 12px; font-size: 10px; letter-spacing: 2.5px; }
+.topic-page .section-kicker::before { content: ''; width: 24px; height: 1px; background: currentColor; }
+.topic-page .split-heading { gap: 50px; margin-top: 18px; margin-bottom: 40px; }
+.topic-page .split-heading h2 { font-size: clamp(30px, 3vw, 40px); line-height: 1.5; letter-spacing: 1px; }
+.topic-page .split-heading p { font-size: 14px; color: #626e65; }
+.topic-page button, .topic-page a { transition: color .2s, background .2s, transform .2s; }
+.culture-page .topic-hero { background: radial-gradient(ellipse at 90% 100%, #56775f80, transparent 60%), #173d35; }
+.culture-page .hero-seal { margin: 0 1vw 0 40px; transform: rotate(-7deg); }
+.culture-page .hero-seal > b { border-radius: 4px; width: 170px; height: 190px; background: #9b4438; color: #f5e6cc; border: 2px solid #d9a97d; box-shadow: inset 0 0 0 8px #9b4438, inset 0 0 0 9px #e3bc8c, 14px 14px 0 #0c2c252c; }
+.culture-page .hero-seal i { margin-top: 12px; }
+.culture-page .culture-pillars { gap: 20px; border: none; }
+.culture-page .culture-pillars article { border: 1px solid #ded4c2; border-radius: 5px; padding: 28px; box-shadow: 0 7px 20px #27382b04; transition: transform .25s, box-shadow .25s; }
+.culture-page .culture-pillars article:hover { transform: translateY(-5px); box-shadow: 0 14px 28px #27382b0c; }
+.culture-page .culture-pillars article > span { position: absolute; top: 30px; right: 25px; color: #9a8d77; }
+.culture-page .culture-pillars article > i { display: grid; place-items: center; width: 65px; height: 65px; margin: 0 0 25px; background: #eee6d7; border: 1px solid #d8c9ad; font-size: 32px; border-radius: 50%; }
+.culture-page .culture-pillars h3 { font-size: 23px; }
+.culture-page .culture-pillars p { font-size: 14px; line-height: 1.9; }
+.culture-page .culture-pillars button { padding: 10px 0 0; font-size: 13px; }
+.culture-page .culture-live-section { background: #eee9de; border-block: 1px solid #ded5c4; }
+.culture-page .live-culture-grid article { border: 1px solid #dcd3c1; border-top: 3px solid #3f6657; border-radius: 4px; box-shadow: none; }
+.culture-page .live-culture-grid h3 { font-size: 23px; }
+.culture-page .live-culture-grid p { font-size: 14px; }
+.culture-page .ink-title { gap: 26px; }
+.culture-page .ink-title h2 { line-height: 1.5; }
+.culture-page .thread-list article { padding: 30px 0; }
+.culture-page .thread-list button { padding: 12px 18px; border: 1px solid #d4c09560; border-radius: 3px; }
+.culture-page .thread-list button:hover { background: #ffffff12; }
+.culture-page .quote-section { background: #e1c79c; }
+.festival-page .festival-hero { background: radial-gradient(ellipse at 100% 90%, #6d726655, transparent 65%), #263d42; }
+.festival-page .moon-art { margin: 0 0 0 40px; width: 240px; flex-shrink: 0; }
+.festival-page .moon-art::before, .festival-page .moon-art::after { content: ''; position: absolute; width: 290px; height: 290px; top: -35px; border: 1px solid #dfc58c25; border-radius: 50%; z-index: -1; }
+.festival-page .moon-art::after { width: 340px; height: 340px; top: -60px; border-style: dashed; }
+.festival-page .moon-art > b { width: 220px; height: 220px; font-size: 68px; font-weight: 400; color: #725936; background: radial-gradient(circle at 25% 22%, #fff5d8, #e6ce9a 60%, #b89e6c); box-shadow: 0 0 75px #ead39a20, inset -12px -14px 35px #967b4e35; border: 1px solid #f2dfb9; }
+.festival-page .moon-art i { margin-top: 20px; font-size: 11px; letter-spacing: 4px; }
+.festival-page .festival-calendar { background: #f1ece1; }
+.festival-page .season-line { padding: 25px 4%; margin-top: 45px; border-color: #d5c8ad; }
+.festival-page .season-line span { width: 60px; height: 60px; box-shadow: 0 0 0 8px #f1ece1; border: 1px solid #d3c3a3; background: #fbf8f0; font-weight: 400; }
+.festival-page .season-line span:nth-of-type(2) { color: #3f6b59; }
+.festival-page .season-line span:nth-of-type(3) { color: #a27739; }
+.festival-page .season-line span:nth-of-type(4) { color: #566d78; }
+.festival-page .festival-grid { gap: 24px; align-items: start; }
+.festival-page .festival-grid article { border-radius: 5px; padding: 28px; min-height: 430px; overflow: hidden; box-shadow: 0 8px 24px #473b2006; }
+.festival-page .festival-card-top { min-height: 92px; align-items: center; padding-bottom: 22px; border-bottom: 1px solid #d6cbb6; gap: 10px; }
+.festival-page .festival-card-top span { font-size: 11px; line-height: 1.8; color: #766d5d; }
+.festival-page .festival-card-top b { display: grid; place-items: center; flex: 0 0 68px; height: 68px; border: 1px solid currentColor; border-radius: 50%; font-size: 39px; font-weight: 400; background: #fff8; }
+.festival-page .festival-grid h2 { font-size: 29px; letter-spacing: 3px; }
+.festival-page .festival-grid > article > p { font-size: 14px; line-height: 1.9; }
+.festival-page .festival-grid .spring { background: linear-gradient(150deg, #f9eee6, #fcf9f2); }
+.festival-page .festival-grid .summer { background: linear-gradient(150deg, #eaf0e8, #fcf9f2); }
+.festival-page .festival-grid .autumn { background: linear-gradient(150deg, #f4ead4, #fcf9f2); }
+.festival-page .rituals { padding-top: 26px; }
+.festival-page .rituals small { font-size: 11px; margin-bottom: 4px; }
+.festival-page .rituals span { padding: 6px 9px; font-size: 12px; background: #fff9; border: 1px solid #d8cdb8; border-radius: 3px; }
+.festival-page .festival-grid button { font-size: 13px; margin-top: 25px; padding: 12px 0 0; border-top: 1px solid #d8cdb8; }
+.festival-page .festival-notes { margin-top: 18px; border-left: 2px solid #b78b55; padding-left: 13px; }
+.festival-page .festival-notes p { color: #5a675e; font: 13px/1.9 "Noto Serif SC"; margin: 0; }
+.festival-page .festival-notes a { display: inline-block; color: #913d35; margin-top: 10px; font-size: 13px; }
+.festival-page .ritual-section h2 { line-height: 1.6; font-size: 32px; }
+.festival-page .ritual-section li { padding: 23px 0; }
+.heritage-page .heritage-topic-hero { background: #64372e; }
+.heritage-page .craft-mark { width: 230px; height: 260px; flex: 0 0 230px; margin: 0 0 0 30px; background: url('./assets/paper-cut-window-art.webp') center/cover; border: 7px solid #e5c89e; border-radius: 48% 48% 3px 3px; transform: rotate(5deg); box-shadow: 14px 14px 0 #2c171733; }
+.heritage-page .craft-mark > b { width: 50px; height: 50px; border-radius: 0; font-size: 28px; background: #9b3e33; color: #ffe8c4; box-shadow: none; margin: 12px auto 0 12px; border: 1px solid #deb781; }
+.heritage-page .craft-mark i { position: absolute; bottom: -38px; white-space: nowrap; }
+.heritage-page .heritage-statement { background: #eee7dc; }
+.heritage-page .heritage-stats { gap: 16px; background: transparent; }
+.heritage-page .heritage-stats > div { border: 1px solid #dbcfbb; border-radius: 4px; padding: 23px 20px; gap: 15px; }
+.heritage-page .heritage-stats b { flex: 0 0 45px; background: #ede1cb; border: 1px solid #cbb28a; color: #934338; }
+.heritage-page .craft-gallery article { border: 1px solid #ddd2bf; border-radius: 5px; overflow: hidden; transition: transform .25s, box-shadow .25s; }
+.heritage-page .craft-gallery article:hover { transform: translateY(-5px); box-shadow: 0 16px 35px #392c2210; }
+.heritage-page .craft-cover { height: 230px; position: relative; isolation: isolate; }
+.heritage-page .craft-cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.heritage-page .craft-cover::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, #172d2790, transparent 65%); z-index: -1; }
+.heritage-page .craft-cover > span { padding: 6px 10px; background: #173b32de; border: 1px solid #f8e3ba50; border-radius: 2px; }
+.heritage-page .craft-cover > b { align-self: end; font-size: 40px; font-weight: 400; }
+.heritage-page .craft-gallery article > p { font-size: 14px; line-height: 1.9; }
+.heritage-page .craft-tags span { font-size: 11px; padding: 5px 8px; border-radius: 3px; }
+.heritage-page .craft-gallery article > a { display: block; margin: 23px 21px 0; padding-top: 16px; border-top: 1px solid #ded4c3; color: #9b4336; text-decoration: none; font-size: 13px; }
+.heritage-page .maker-quote h2 { font-size: 31px; line-height: 1.6; }
+/* 详情阅读页 */
+.detail-page .detail-hero { min-height: 520px; }
+.detail-page .detail-hero-copy { padding-bottom: 15px; }
+.detail-page .detail-hero-copy > span { display: block; letter-spacing: 3px; }
+.detail-page .detail-hero h1 { margin: 22px 0; letter-spacing: 8px; }
+.detail-page .detail-back { border-bottom: 1px solid #e8cd9770; padding-bottom: 8px; }
+.detail-page .detail-quote { padding: 25px; margin-bottom: 22px; background: #142e2870; border: 1px solid #ead1a155; backdrop-filter: blur(6px); }
+.detail-page .detail-quote p { font-size: 19px; line-height: 1.8; }
+.detail-page .detail-main { gap: 50px; padding-top: 65px; }
+.detail-page .article-lead p { font-size: 21px; font-weight: 500; }
+.detail-page .detail-section { grid-template-columns: 45px 1fr; gap: 16px; padding: 34px 0; }
+.detail-page .detail-section-no { font: 21px Georgia, serif; color: #9d8261; }
+.detail-page .detail-section h2 { font-size: 25px; }
+.detail-page .detail-section p { color: #58685e; line-height: 2.05; }
+.detail-page .detail-highlights { gap: 12px; background: transparent; }
+.detail-page .detail-highlights article { border: 1px solid #d9ceba; border-radius: 4px; background: #f0e8da; }
+.detail-page .detail-facts { background: #efe6d6; border: 1px solid #dacbb3; border-top: 3px solid #a14b3c; border-radius: 4px; }
+.detail-page .detail-ai { border-radius: 4px; }
+.detail-page .detail-prompts button { border-radius: 3px; line-height: 1.8; }
+.detail-page .detail-ai-answer { border-radius: 3px; }
+.detail-page .detail-ai-answer p { font-size: 13px; white-space: pre-wrap; }
+.detail-page .detail-next { background: #e0c79c; border-top: 1px solid #d3b781; }
+.detail-page .detail-next a { border-radius: 3px; font-size: 14px; }
+/* AI 对话页 */
+.ai-page .ai-hero { min-height: 315px; align-items: center; padding-top: 55px; padding-bottom: 55px; background: radial-gradient(circle at 85% 40%, #d2b47a18 0 12%, transparent 12.2%), #1e443b; }
+.ai-page .ai-hero h1 { font-size: clamp(32px, 3.6vw, 48px); line-height: 1.4; }
+.ai-page .ai-hero p { font-size: 14px; color: #cddbcf; margin: 18px 0 0; line-height: 1.8; }
+.ai-page .ai-hero span { font-size: 10px; letter-spacing: 3px; margin-bottom: 14px; }
+.ai-page .ai-layout { background: #f3efe6; padding-top: 45px; gap: 24px; }
+.ai-page .ai-chat-panel, .ai-page .recommend-card { border-radius: 6px; box-shadow: 0 12px 35px #203d3006; }
+.ai-page .chat-header { padding: 22px; background: #fffdf7; color: #234239; border-bottom: 1px solid #e1d8c7; }
+.ai-page .chat-title { display: flex; align-items: center; gap: 12px; font-size: 17px; }
+.ai-page .ai-monogram { display: grid; place-items: center; width: 42px; height: 42px; border: 1px solid #c3a16e; background: #21473e; color: #f2d49d; font-size: 24px; border-radius: 50%; }
+.ai-page .chat-title small { display: block; color: #748176; font: 11px/1.7 sans-serif; margin-top: 4px; }
+.ai-page .online-badge { border-color: #d5cbb7; color: #75674f; background: #f5f0e5; white-space: nowrap; }
+.ai-page .chat-body { min-height: 330px; background: #f4f0e7; }
+.ai-page .msg > b { font: 18px "Noto Serif SC"; background: #e7ddc9; color: #8f4036; border: 1px solid #d6c6a8; }
+.ai-page .msg > div { white-space: pre-wrap; overflow-wrap: anywhere; }
+.ai-page .msg.user > div { background: #31594c; }
+.ai-page .quick-tags button { border-radius: 20px; padding: 9px 12px; font-size: 12px; background: #faf7ef; }
+.ai-page .quick-tags button:hover { background: #eee2cd; }
+.ai-page .chat-input-row input { border-radius: 4px; font-size: 14px; }
+.ai-page .send-btn { border-radius: 4px; }
+.ai-page .recommend-card { padding: 25px 22px; border-top: 2px solid #b4925e; }
+.ai-page .sidebar-kicker { font: 9px sans-serif; color: #9d7745; letter-spacing: 1.5px; }
+.ai-page .recommend-card h3 { font-size: 20px; margin-top: 14px; }
+.ai-page .ai-topic-list { display: grid; margin-top: 20px; }
+.ai-page .ai-topic-list button { display: flex; align-items: center; gap: 13px; padding: 14px 0; border-top: 1px solid #e3d9c7; font-size: 14px; text-align: left; }
+.ai-page .ai-topic-list small { color: #a18c6c; font: 11px Georgia; }
+.ai-page .ai-topic-list span { margin-left: auto; color: #9e4b3a; }
+.ai-page .sidebar-link { display: inline-block; margin-top: 13px; text-decoration: none; color: #934134; font-size: 13px; }
+/* 登录与账户页 */
+.auth-page { isolation: isolate; background: linear-gradient(110deg, #173e34 0 50%, #ece5d7 50%); }
+.auth-page::before { content: ''; position: absolute; width: 390px; height: 390px; left: -170px; bottom: 25px; border: 1px solid #d1b67a33; border-radius: 50%; box-shadow: 0 0 0 35px #d1b67a08, 0 0 0 70px #d1b67a06; z-index: -1; }
+.auth-page .auth-layout { gap: 65px; }
+.auth-page .auth-story { padding: 20px 35px 20px 0; }
+.auth-page .auth-story h1 { line-height: 1.5; margin: 22px 0; }
+.auth-page .auth-story > span { font-size: 10px; letter-spacing: 2.5px; }
+.auth-page .auth-story p { color: #c8d7ca; font-size: 14px; }
+.auth-page .auth-story > div > b { width: 55px; height: 65px; border-radius: 2px; background: #d7bf7e08; }
+.auth-page .auth-card { border: 1px solid #d7cbb4; border-top: 4px solid #b18a54; border-radius: 7px; padding: 35px; box-shadow: 0 25px 70px #0c211b20; }
+.auth-page .auth-heading > span, .auth-page .auth-kicker { color: #a27942; letter-spacing: 2px; }
+.auth-page .auth-heading h2 { margin: 12px 0; font-size: 30px; }
+.auth-page .auth-card input { border-radius: 4px; padding: 13px; transition: border-color .2s, box-shadow .2s; }
+.auth-page .auth-card input:focus { outline: none; border-color: #9c7951; box-shadow: 0 0 0 3px #a6855220; }
+.auth-page .auth-card label { font-size: 13px; gap: 8px; }
+.auth-page .auth-submit { border-radius: 4px; font-size: 14px; }
+.auth-page .auth-footnote { font-size: 11px; line-height: 1.9; color: #74776c; border-top: 1px solid #e0d7c7; padding-top: 17px; }
+.auth-page .account-note { border: 1px solid #d7c6a9; border-radius: 4px; padding: 20px; line-height: 1.8; }
+.auth-page .account-destinations { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+.auth-page .account-destinations a { color: #31574a; text-decoration: none; border: 1px solid #d7cbb6; padding: 14px 10px; font-size: 13px; text-align: center; border-radius: 3px; }
+.auth-page .account-welcome { min-width: 0; }
+.auth-page .account-welcome > div { min-width: 0; overflow-wrap: anywhere; }
+.auth-page .account-welcome > b { flex-shrink: 0; }
+/* 所有内页的收尾导航。 */
+footer.site-footer { padding: 36px 8vw; background: #16382f; border-top: 1px solid #d9c69525; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; align-items: center; }
+.site-footer .brand { font-size: 18px; }
+.site-footer .brand small { font-size: 10px; letter-spacing: 1px; margin-top: 6px; }
+.site-footer .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+.site-footer .footer-links a { color: #d5dfd1; text-decoration: none; font-size: 12px; }
+.site-footer .footer-links a:hover { color: #f1ca8c; }
+footer.site-footer > small { font-size: 10px; color: #a9bdaf; }
+@media (min-width: 761px) and (max-width: 1100px) {
+  .topic-page .topic-hero { padding-inline: 7vw; }
+  .topic-page .topic-section { padding-inline: 7vw; }
+  .festival-page .moon-art { transform: scale(.8); width: 180px; margin-left: 20px; }
+  .heritage-page .craft-mark { transform: rotate(5deg) scale(.8); flex-basis: 180px; }
+  .festival-page .festival-grid, .heritage-page .craft-gallery { gap: 15px; }
+  .festival-page .festival-grid article { padding: 20px; }
+  .festival-page .festival-card-top { flex-wrap: wrap; }
+  .auth-page .auth-layout { grid-template-columns: minmax(0, 1fr) minmax(330px, 420px); gap: 30px; }
+}
+@media (max-width: 760px) {
+  .topic-page .topic-hero { min-height: 590px; padding: 50px 7vw 170px; align-items: start; }
+  .topic-page .topic-hero::before { inset: 12px; }
+  .topic-page .topic-hero-copy { max-width: 100%; }
+  .topic-page .topic-hero h1 { font-size: clamp(30px, 5.5vw, 40px); margin: 20px 0; line-height: 1.45; }
+  .topic-page .topic-hero p { font-size: 14px; line-height: 1.9; }
+  .topic-page .topic-hero-copy > span { font-size: 9px; letter-spacing: 2px; }
+  .topic-page .topic-primary { font-size: 13px; margin-top: 22px; }
+  .culture-page .hero-seal { right: 9vw; bottom: 35px; margin: 0; }
+  .culture-page .hero-seal > b { width: 80px; height: 90px; font-size: 40px; }
+  .culture-page .hero-seal i { margin-top: 0; font-size: 10px; }
+  .festival-page .moon-art { right: 10vw; bottom: 25px; width: 110px; margin: 0; }
+  .festival-page .moon-art > b { width: 100px; height: 100px; font-size: 35px; }
+  .festival-page .moon-art::before { width: 130px; height: 130px; top: -15px; }
+  .festival-page .moon-art::after { width: 160px; height: 160px; top: -30px; }
+  .festival-page .moon-art i { font-size: 9px; margin-top: 8px; letter-spacing: 1px; }
+  .heritage-page .craft-mark { right: 9vw; bottom: 35px; width: 100px; height: 115px; margin: 0; border-width: 4px; }
+  .heritage-page .craft-mark > b { width: 24px; height: 24px; margin: 5px auto 0 5px; font-size: 14px; }
+  .heritage-page .craft-mark i { bottom: -24px; font-size: 9px; letter-spacing: 1px; }
+  .topic-page .topic-section { padding: 48px 7vw; }
+  .topic-page .split-heading { grid-template-columns: 1fr; gap: 22px; margin: 16px 0 30px; }
+  .topic-page .split-heading h2 { font-size: 29px; }
+  .topic-page .split-heading p { font-size: 14px; }
+  .culture-page .culture-pillars { gap: 16px; }
+  .culture-page .culture-pillars article { padding: 25px; min-height: 0; }
+  .culture-page .culture-pillars article > i { margin-bottom: 20px; }
+  .culture-page .ink-title h2 { font-size: 26px; }
+  .culture-page .thread-list h3 { font-size: 21px; }
+  .festival-page .season-line { padding-inline: 5px; margin-top: 25px; }
+  .festival-page .season-line span { width: 43px; height: 43px; }
+  .festival-page .festival-grid article { min-height: 0; padding: 26px; }
+  .festival-page .festival-card-top { min-height: 80px; }
+  .festival-page .ritual-section h2 { font-size: 27px; }
+  .heritage-page .heritage-stats { gap: 10px; }
+  .heritage-page .heritage-stats > div { padding: 18px; }
+  .heritage-page .craft-cover { height: 220px; }
+  .heritage-page .maker-quote h2 { font-size: 27px; }
+  .detail-page .detail-hero { min-height: 510px; }
+  .detail-page .detail-main { padding-top: 42px; gap: 30px; }
+  .detail-page .article-lead p { font-size: 18px; }
+  .detail-page .detail-section { grid-template-columns: 30px 1fr; gap: 10px; }
+  .detail-page .detail-section h2 { font-size: 23px; }
+  .detail-page .detail-section p { font-size: 14px; }
+  .detail-page .detail-next h2 { font-size: 26px; line-height: 1.6; }
+  .ai-page .ai-hero { min-height: 290px; padding: 45px 7vw; }
+  .ai-page .ai-hero h1 { font-size: 33px; }
+  .ai-page .ai-layout { padding: 28px 5vw 45px; }
+  .ai-page .chat-header { padding: 17px 14px; gap: 8px; }
+  .ai-page .chat-title { font-size: 15px; gap: 9px; }
+  .ai-page .chat-title small { font-size: 10px; }
+  .ai-page .online-badge { font-size: 10px; padding: 5px 8px; }
+  .ai-page .chat-body { padding: 20px 14px; min-height: 310px; }
+  .ai-page .quick-tags { padding-inline: 14px; }
+  .ai-page .quick-tags button { font-size: 11px; }
+  .ai-page .chat-input-row { padding: 12px 14px 18px; gap: 8px; }
+  .ai-page .chat-input-row input { padding: 12px 10px; font-size: 12px; }
+  .ai-page .chat-input-row .send-btn { padding: 0 17px; font-size: 13px; }
+  .auth-page { background: #193e34; }
+  .auth-page .auth-layout { grid-template-columns: 1fr; gap: 30px; margin-top: 40px; }
+  .auth-page .auth-story { padding: 0; }
+  .auth-page .auth-story h1 { font-size: 36px; margin: 18px 0; }
+  .auth-page .auth-card { padding: 28px 23px; }
+  footer.site-footer { padding: 32px 7vw; gap: 25px; }
+  .site-footer .footer-links { gap: 20px; }
+}

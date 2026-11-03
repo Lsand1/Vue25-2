@@ -1,46 +1,43 @@
 <template>
-  <main>
+  <main class="ai-page">
     <header class="topbar">
-      <a class="brand" href="#home"><b>华</b><span>华夏智游<small>HUAXIA INTELLIGENT JOURNEY</small></span></a>
+      <router-link class="brand" to="/"><b>华</b><span>华夏智游<small>HUAXIA INTELLIGENT JOURNEY</small></span></router-link>
       <nav>
         <router-link to="/">首页</router-link>
         <router-link to="/culture">中华文化</router-link>
         <router-link to="/festivals">传统节日</router-link>
         <router-link to="/heritage">非遗文化</router-link>
-        <router-link to="/ai" class="active">AI助手</router-link>
+        <router-link to="/workshop">剪纸工坊</router-link><router-link to="/ai" class="active">AI助手</router-link>
       </nav>
       <div class="head-actions">
         <SearchButton />
-        <AccountButton />
+        <AccountButton /><MobileNav />
       </div>
     </header>
 
     <section class="page-hero small-hero ai-hero">
       <div>
-        <span>AI文化助手</span>
-        <h1>用真实 AI，跟我一起探索中华文化的细节与故事</h1>
+        <span>ASK · DISCOVER · EXPLORE</span>
+        <h1>从一个问题，<br/>走近千年文化</h1>
+        <p>典故、风俗与山河之间，你的好奇，都可以从这里开始。</p>
       </div>
     </section>
 
     <section class="ai-layout">
       <div class="ai-chat-panel">
         <div class="chat-header">
-          <div class="chat-title">🐉 华夏智游 AI文化助手</div>
-          <span class="online-badge">在线</span>
+          <div class="chat-title"><b class="ai-monogram">华</b><span>小华 · 文化助手<small>你的中华文化探索伙伴</small></span></div>
+          <span class="online-badge">文化问答</span>
         </div>
 
         <div class="error-banner" v-if="error">{{ error }}</div>
 
-        <div class="chat-body">
+        <div ref="chatBody" class="chat-body" aria-live="polite" aria-label="对话记录">
           <div v-for="(message, index) in messages" :key="index" class="msg" :class="message.role">
-            <b v-if="message.role === 'assistant'">🐉</b>
+            <b v-if="message.role === 'assistant'">华</b>
             <div>{{ message.text }}</div>
           </div>
 
-          <div v-if="isLoading" class="msg assistant">
-            <b>🐉</b>
-            <div>正在思考中……</div>
-          </div>
         </div>
 
         <div class="quick-tags">
@@ -50,34 +47,34 @@
         </div>
 
         <div class="chat-input-row">
-          <input v-model="inputText" placeholder="输入你想了解的中华文化内容…" @keyup.enter="sendMessage" />
+          <input v-model="inputText" aria-label="向小华提问" placeholder="输入你想了解的中华文化内容…" @keydown.enter="!$event.isComposing && sendMessage()" />
           <button class="send-btn" @click="sendMessage" :disabled="isLoading">发送</button>
         </div>
       </div>
 
       <aside class="ai-sidebar">
         <div class="recommend-card">
-          <h3>✨ 猜你想了解</h3>
-          <p>猜你会对这些内容感兴趣：</p>
-          <ul>
-            <li>🎭 京剧</li>
-            <li>🏮 春节</li>
-            <li>🏯 故宫</li>
-            <li>📜 中国书法</li>
-          </ul>
+          <span class="sidebar-kicker">A LITTLE INSPIRATION</span>
+          <h3>好奇，从这里开始</h3>
+          <p>选择一个主题，开启新的探索。</p>
+          <div class="ai-topic-list"><button v-for="(topic, index) in ['京剧', '春节', '故宫', '中国书法']" :key="topic" @click="addPrompt('请介绍一下' + topic)"><small>0{{ index + 1 }}</small>{{ topic }}<span>↗</span></button></div>
         </div>
 
         <div class="recommend-card">
-          <h3>🧭 AI对话说明</h3>
-          <p>当前已接入你提供的 DeepSeek API 环境变量，支持真实 AI 回复。</p>
+          <span class="sidebar-kicker">KEEP EXPLORING</span>
+          <h3>让好奇走得更远</h3>
+          <p>也可以从文化专题中寻找灵感，带着新的问题回来。</p>
+          <router-link to="/culture" class="sidebar-link">走进中华文化 →</router-link>
         </div>
       </aside>
     </section>
+    <SiteFooter />
   </main>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { nextTick, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import { askXiaohua } from '../services/ai'
 
 const messages = ref([
@@ -88,8 +85,12 @@ const messages = ref([
 ])
 
 const inputText = ref('')
+const chatBody = ref(null)
+const route = useRoute()
+watch(() => route.query.topic, (topic) => { if (typeof topic === 'string') inputText.value = `请介绍一下${topic.slice(0, 40)}` }, { immediate: true })
 const isLoading = ref(false)
 const error = ref('')
+watch(messages, async () => { await nextTick(); if (chatBody.value) chatBody.value.scrollTop = chatBody.value.scrollHeight }, { deep: true })
 
 function addPrompt(text) {
   inputText.value = text

@@ -1,0 +1,66 @@
+.workshop-page { background: #f5f0e5; color: #253d32; }
+.mobile-preview-link { display: none; }
+.workshop-preview { scroll-margin-top: 85px; }
+.workshop-intro { max-width: 1320px; margin: auto; padding: 48px 5vw 35px; display: flex; justify-content: space-between; align-items: end; gap: 25px; }
+.workshop-kicker { color: #a04938; font: 10px/1.8 sans-serif; letter-spacing: 2.6px; }
+.workshop-intro h1 { font: 600 clamp(32px, 3.8vw, 48px)/1.4 "Noto Serif SC"; margin: 14px 0 10px; letter-spacing: 4px; }
+.workshop-intro p { color: #6d7568; font: 14px/1.8 "Noto Serif SC"; margin: 0; }
+.workshop-intro > a { color: #964734; font-size: 13px; text-decoration: none; border-bottom: 1px solid #c7ab7d; padding-bottom: 8px; white-space: nowrap; }
+.workbench { max-width: 1320px; margin: 0 auto; padding: 0 5vw 45px; display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 24px; }
+.workshop-tools { background: #fffaf0; border: 1px solid #d8ccb5; border-radius: 6px; padding: 24px; }
+.tool-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 20px; }
+.tool-heading > span, .preview-heading { font-size: 11px; color: #9b7c4e; letter-spacing: 1px; }
+.tool-heading > b { font: 500 15px "Noto Serif SC"; }
+.symmetry-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.symmetry-options button { border: 1px solid #d9cbb1; padding: 10px 5px; border-radius: 3px; font-size: 12px; }
+.workshop-page button[aria-pressed="true"] { background: #274f40; color: #f9e5bb; border-color: #274f40; }
+.cutting-board { margin: 18px 0; background: #f0e8d8; border: 1px solid #e1d4bd; border-radius: 4px; overflow: hidden; text-align: center; }
+.cutting-board > svg { display: block; width: min(100%, 310px); margin: auto; cursor: crosshair; touch-action: manipulation; }
+.cutting-board > span { display: block; font-size: 11px; padding: 0 5px 13px; color: #7b715f; }
+.tool-label { font-size: 12px; color: #6c705f; margin-bottom: 10px; }
+.shape-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.shape-options button { display: flex; align-items: center; justify-content: center; gap: 7px; padding: 9px 5px; background: #f2eadb; border: 1px solid #dcd0b7; border-radius: 3px; font-size: 12px; }
+.shape-options svg { width: 22px; height: 22px; fill: currentColor; }
+.cut-size { display: flex; align-items: center; gap: 12px; margin-top: 20px; font-size: 12px; color: #6c705f; }
+.cut-size input { min-width: 0; flex: 1; accent-color: #a24534; cursor: pointer; }
+.cut-size > span { width: 18px; }
+.palette { display: flex; align-items: center; gap: 12px; margin-top: 20px; }
+.palette > span { font-size: 12px; color: #6c705f; margin-right: 5px; }
+.workshop-page .palette button { width: 30px; height: 30px; border-radius: 50%; padding: 0; border: 3px solid #fff9ec; background: var(--swatch); color: #fff1d6; box-shadow: 0 0 0 1px #d4c4a6; font-size: 13px; }
+.workshop-page .palette button[aria-pressed="true"] { box-shadow: 0 0 0 2px #ad915e; }
+.cut-actions { display: flex; justify-content: space-between; border-top: 1px solid #e2d5bc; margin-top: 22px; padding-top: 17px; }
+.cut-actions button { font-size: 12px; color: #994833; padding: 5px 0; }
+.cut-actions button:disabled { opacity: .4; cursor: default; }
+.workshop-status { min-height: 34px; font-size: 11px; line-height: 1.7; color: #7e795f; margin: 14px 0 0; }
+.workshop-preview { min-width: 0; display: flex; flex-direction: column; padding: 24px; border: 1px solid #d8ccb5; background: #eae2d1; border-radius: 6px; }
+.preview-heading { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 20px; }
+.artwork-mat { flex: 1; display: flex; flex-direction: column; justify-content: center; position: relative; border: 1px solid #cfbd9a; background: radial-gradient(ellipse, #fffaf0, #f1e7d2); padding: 20px 10px; box-shadow: inset 0 0 0 7px #f7edda, inset 0 0 0 8px #d9c8a8; }
+.artwork-caption { align-self: center; font: 11px "Noto Serif SC"; letter-spacing: 4px; color: #ad9061; padding: 12px 5px; }
+.window-art { width: 100%; max-height: 500px; display: block; margin: auto; filter: drop-shadow(2px 4px 2px #4e28142a); animation: paper-unfold .7s ease-out; }
+.artwork-sign { display: flex; justify-content: end; align-items: center; gap: 12px; padding: 10px 20px 5px; }
+.artwork-sign > span { color: #9a805b; font: 10px/1.7 "Noto Serif SC"; letter-spacing: 2px; }
+.artwork-sign > b { color: #a44b36; border: 1px solid currentColor; font: 17px "Noto Serif SC"; padding: 5px; writing-mode: vertical-rl; }
+.preview-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px; }
+.preview-actions button { padding: 13px 8px; font-size: 13px; border-radius: 3px; }
+.reveal-button { border: 1px solid #b7a17d; color: #715b35; background: #f8f1e3; }
+.export-button { background: #9d4033; color: #fff4db; border: 1px solid #9d4033; }
+.export-hint { font-size: 11px; color: #87785e; text-align: center; margin: 13px 0 0; }
+.workshop-presets { max-width: 1320px; padding: 20px 5vw 45px; margin: auto; display: grid; grid-template-columns: .8fr 1.2fr; gap: 35px; align-items: center; }
+.workshop-presets h2 { font: 600 27px "Noto Serif SC"; margin: 10px 0; }
+.workshop-presets p { color: #737566; font-size: 13px; line-height: 1.8; }
+.preset-buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.preset-buttons button { border: 1px solid #d7c8ad; border-radius: 4px; padding: 20px 15px; background: #fcf8ef; text-align: left; }
+.preset-buttons b { display: block; font: 32px "Noto Serif SC"; color: #a24b36; margin-bottom: 15px; }
+.preset-buttons span { display: block; font-size: 14px; }
+.preset-buttons small { display: block; font-size: 10px; color: #8b806b; line-height: 1.8; margin-top: 7px; }
+.preset-buttons i { display: block; margin-top: 14px; color: #a24b36; font-style: normal; }
+.workshop-notes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px; padding: 40px max(5vw, calc((100vw - 1190px) / 2)) 55px; background: #e9e2d2; border-top: 1px solid #d8ccb3; }
+.workshop-notes article > span { font-size: 11px; color: #9c623e; letter-spacing: 2px; }
+.workshop-notes h3 { font: 500 20px/1.6 "Noto Serif SC"; margin: 13px 0; }
+.workshop-notes p { font: 13px/1.9 "Noto Serif SC"; color: #697061; }
+.workshop-notes a { color: #984a35; font-size: 12px; text-decoration: none; }
+@keyframes paper-unfold { from { transform: scale(.6) rotate(-15deg); opacity: .2; } to { transform: scale(1) rotate(0); opacity: 1; } }
+@media(max-width: 900px) { .workshop-intro { align-items: start; flex-direction: column; padding-top: 35px; }.workbench { gap: 16px; }.workshop-tools, .workshop-preview { padding: 17px; }.tool-heading { align-items: start; flex-direction: column; }.workshop-presets { grid-template-columns: 1fr; gap: 15px; } }
+@media(max-width: 650px) { .workbench { grid-template-columns: 1fr; }.workshop-intro h1 { font-size: 36px; }.workshop-intro p { font-size: 13px; }.tool-heading { flex-direction: row; }.workshop-preview { min-height: 490px; }.window-art { max-height: 380px; }.workshop-notes { grid-template-columns: 1fr; gap: 22px; }.preset-buttons { gap: 8px; }.preset-buttons button { padding: 16px 12px; }.workshop-presets h2 { font-size: 25px; }.cutting-board > svg { max-height: 265px; }.workshop-status { min-height: 20px; }.workshop-intro { gap: 18px; } }
+@media(prefers-reduced-motion: reduce) { .window-art { animation: none; } }
+@media(max-width:650px) { .mobile-preview-link { display: block; font-size: 12px; color: #91432e; margin-top: 16px; } }

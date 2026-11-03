@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="home-page">
     <header class="topbar">
       <a class="brand" href="#home"><b>华</b><span>华夏智游<small>HUAXIA INTELLIGENT JOURNEY</small></span></a>
       <nav>
@@ -7,11 +7,11 @@
         <router-link to="/culture">中华文化</router-link>
         <router-link to="/festivals">传统节日</router-link>
         <router-link to="/heritage">非遗文化</router-link>
-        <router-link to="/ai">AI助手</router-link>
+        <router-link to="/workshop">剪纸工坊</router-link><router-link to="/ai">AI助手</router-link>
       </nav>
       <div class="head-actions">
         <SearchButton />
-        <AccountButton />
+        <AccountButton /><MobileNav />
       </div>
     </header>
 
@@ -24,7 +24,7 @@
           <button class="primary" @click="$router.push('/culture')">开启文化漫游　→</button>
           <button class="outline" @click="open('给我推荐一个今天值得了解的中华文化主题')">🐉 问问小华</button>
         </div>
-        <div class="social"><b>AI</b> 小华已为 <strong>12,847</strong> 位文化旅人答疑解惑</div>
+        <div class="social"><b>AI</b> 和小华一起探索中华文化</div>
       </div>
       <div class="hero-place">北京 · 故宫博物院</div>
       <button type="button" class="scroll" @click="scrollToExplore">向下探索</button>
@@ -40,18 +40,19 @@
         <button @click="open('我想从中华文化中选择一个主题开始探索')">让小华推荐　→</button>
       </div>
       <div class="archive">
-        <article class="feature">
-          <div class="feature-visual"><img :src="forbiddenCity" alt="故宫建筑" /></div>
-          <div>
-            <small>古建 · 礼序之美</small>
-            <h3>故宫中轴线的<br/>空间叙事</h3>
-            <button @click="guide=true;open('为什么故宫的建筑都沿中轴线展开？')">跟随 AI 导游探索　→</button>
+        <article class="feature papercut-feature">
+          <div class="feature-visual"><img :src="paperCutArt" alt="凤凰与牡丹纹样的红色剪纸" loading="lazy" /></div>
+          <div class="feature-copy">
+            <small>本期精选 · 民间美术</small>
+            <h3>一纸之间，<br/>万象新生</h3>
+            <p>在镂空与留白之间，<br/>读懂中国人的吉祥心意。</p>
+            <button @click="$router.push('/workshop')">亲手剪一张窗花　→</button>
           </div>
         </article>
         <div class="archive-list">
-          <article v-for="(c,i) in cards" :key="c[1]" @click="open('给我介绍一下'+c[1])">
+          <article v-for="(c,i) in cards" :key="c[1]" role="button" tabindex="0" @keydown.enter="open('给我介绍一下'+c[1])" @click="open('给我介绍一下'+c[1])">
             <span>0{{i+1}}</span>
-            <img :src="c[0]" :alt="c[1]"/>
+            <img :src="c[0]" :alt="c[1]" loading="lazy"/>
             <div>
               <h4>{{c[1]}}</h4>
               <p>{{c[2]}}</p>
@@ -69,11 +70,11 @@
           <h2>非遗新生</h2>
           <p>在当代生活里，看见手艺的温度</p>
         </div>
-        <button>浏览全部　→</button>
+        <button @click="$router.push('/heritage')">浏览全部　→</button>
       </div>
       <div class="heritage-grid">
-        <article v-for="h in heritage" :key="h[1]" @click="open('给我介绍一下'+h[1]+'，讲一个有趣的故事')">
-          <div class="heritage-icon"><img :src="h[0]" :alt="h[1]"/></div>
+        <article v-for="(h, index) in heritage" :key="h[1]" role="button" tabindex="0" @keydown.enter="open('给我介绍一下'+h[1]+'，讲一个有趣的故事')" @click="open('给我介绍一下'+h[1]+'，讲一个有趣的故事')">
+          <div class="heritage-icon"><img :src="h[0]" :alt="h[1]" loading="lazy"/><span class="heritage-number">0{{ index + 1 }}</span></div>
           <small>非物质文化遗产</small>
           <h3>{{h[1]}}</h3>
           <p>{{h[2]}}</p>
@@ -83,7 +84,7 @@
     </section>
 
     <section id="scenic" class="guide-section">
-      <div class="guide-art"><img :src="forbiddenCity" alt="北京故宫太和殿"/><span>北京 · 故宫博物院</span></div>
+      <div class="guide-art"><img :src="forbiddenCity" alt="北京故宫太和殿" loading="lazy"/><span>北京 · 故宫博物院</span></div>
       <div class="guide-copy">
         <span>AI CULTURAL GUIDE</span>
         <h2>此刻，让小华<br/>带你走进<strong>太和殿</strong></h2>
@@ -103,14 +104,14 @@
       <small>© 2025 华夏智游 · AI+中华文化数字体验平台</small>
     </footer>
 
-    <button class="fab" @click="open()"><b>🐉</b><span>问问小华<small>AI 文化助手</small></span><i></i></button>
+    <button v-if="!assistantOpen" class="fab" aria-label="打开小华 AI 文化助手" @click="open()"><b>华<small>AI</small></b><span>问问小华<small>AI 文化助手</small></span><i></i></button>
 
     <transition name="fade">
       <aside v-if="assistantOpen" class="chat">
         <header>
           <b>🐉</b>
           <div><strong>小华 · AI文化助手</strong><small>● {{context}}</small></div>
-          <button @click="assistantOpen=false">×</button>
+          <button aria-label="关闭文化助手" @click="assistantOpen=false">×</button>
         </header>
         <div ref="chat" class="messages">
           <div class="listening">✦ <span><b>小华正在聆听</b><small>告诉我你对中华文化的好奇</small></span></div>
@@ -135,7 +136,7 @@
 
 <script setup>
 import { computed, nextTick, ref } from 'vue'
-import paperCutArt from '../assets/paper-cut-window-art.png'
+import paperCutArt from '../assets/paper-cut-window-art.webp'
 import { askXiaohua } from '../services/ai'
 
 const assistantOpen=ref(false),message=ref(''),guide=ref(false),chat=ref(null),isAiLoading=ref(false)

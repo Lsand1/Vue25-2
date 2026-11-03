@@ -40,15 +40,16 @@ const keyword = ref('')
 const input = ref(null)
 
 const content = [
+  { title: '数字剪纸工坊', category: '互动体验', description: '亲手制作对称窗花，选择剪口与纸色，导出自己的剪纸作品。', to: '/workshop' },
   { title: '故宫', category: '华夏名胜', description: '从中轴礼序读懂中国古代宫殿建筑。', to: '/detail/故宫' },
   { title: '京剧', category: '非遗文化', description: '脸谱、唱腔与程式化动作共同构成舞台艺术。', to: '/detail/京剧' },
-  { title: '剪纸', category: '非遗文化', description: '把节令情感与吉祥愿望镂刻在一张红纸上。', to: '/heritage' },
-  { title: '苏绣', category: '非遗文化', description: '在细密针法与丝线之间，感受江南工艺之美。', to: '/heritage' },
-  { title: '春节', category: '传统节日', description: '从贴春联、守岁到家宴团聚，感受中国年的温度。', to: '/festivals' },
-  { title: '端午', category: '传统节日', description: '赛龙舟与粽子背后的纪念、祈福与团聚。', to: '/festivals' },
+  { title: '剪纸', category: '非遗文化', description: '把节令情感与吉祥愿望镂刻在一张红纸上。', to: '/detail/剪纸' },
+  { title: '苏绣', category: '非遗文化', description: '在细密针法与丝线之间，感受江南工艺之美。', to: '/detail/苏绣' },
+  { title: '春节', category: '传统节日', description: '从贴春联、守岁到家宴团聚，感受中国年的温度。', to: '/detail/春节' },
+  { title: '端午', category: '传统节日', description: '赛龙舟与粽子背后的纪念、祈福与团聚。', to: '/detail/端午' },
   { title: '中秋节', category: '传统节日', description: '在赏月与团圆里感受共享月华的中华审美。', to: '/detail/中秋节' },
-  { title: '千里江山图', category: '中华文化', description: '用青绿山水体会山河与心境相映的审美传统。', to: '/culture' },
-  { title: '景泰蓝', category: '中华文化', description: '看见器物之中流动的匠心与生活美学。', to: '/culture' },
+  { title: '千里江山图', category: '中华文化', description: '用青绿山水体会山河与心境相映的审美传统。', to: '/detail/千里江山图' },
+  { title: '景泰蓝', category: '中华文化', description: '看见器物之中流动的匠心与生活美学。', to: '/detail/景泰蓝' },
 ]
 
 const results = computed(() => {
